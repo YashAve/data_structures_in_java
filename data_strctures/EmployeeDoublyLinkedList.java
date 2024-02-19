@@ -2,12 +2,25 @@ package data_strctures;
 
 import beans.Employee;
 
-public class EmployeeDoublyLinkedList {
+public class EmployeeDoublyLinkedList implements Linkable{
 
     private EmployeeNode head;
     private EmployeeNode tail;
     private int size;
 
+    public void printList(final boolean backwards) {
+        if (backwards) {
+            EmployeeNode current = tail;
+            System.out.print("TAIL <-> ");
+            while (current !=  null) {
+                System.out.printf("%s <-> ", current);
+                current = current.getPrevious();
+            }
+            System.out.printf("HEAD%n");
+        }
+    }
+
+    @Override
     public void printList() {
         EmployeeNode current = head;
         System.out.print("HEAD <-> ");
@@ -31,6 +44,7 @@ public class EmployeeDoublyLinkedList {
         }
     }
 
+    @Override
     public void removeFromFront() {
         if (size > 0) {
             if (size == 1) {
@@ -55,6 +69,7 @@ public class EmployeeDoublyLinkedList {
         size++;
     }
 
+    @Override
     public void addToFront(Employee employee) {
         EmployeeNode node = new EmployeeNode(employee);
         node.setNext(head);
@@ -67,7 +82,14 @@ public class EmployeeDoublyLinkedList {
         size++;
     }
 
+    @Override
     public int getSize() {
         return size;
     }
 }
+
+
+
+
+
+
